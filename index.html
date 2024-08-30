@@ -54,7 +54,11 @@
       const setStatus = (str) => {document.getElementById("status").innerText = str;};
       const setStatusError = (err) => setStatus(err?.message ?? JSON.stringify(err));
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
-      const addOutput = (inStr, outStr) => {document.getElementById("output").innerHtml += `<blockquote class="input">${inStr}</blockquote><br/><blockquote class="output">${outStr}</blockquote><br/>`;};
+      const addOutput = (inStr, outStr) => {
+        const inQuote = `<blockquote class="input">${inStr}</blockquote>`;
+        const outQuote = `<blockquote class="output">${outStr}</blockquote>`;
+        document.getElementById("output").innerHtml += `${inQuote}<br>${outQuote}<br>`;
+      };
       let assistant = undefined;
         try{
           window.ai.assistant.create().then(model => {
