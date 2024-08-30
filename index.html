@@ -27,6 +27,17 @@
         overflow: auto;
         padding: 1em;
       }
+      blockquote{
+        background-color: lightgrey;
+        border-radius: 0.5em;
+        margin: 0.25em 0;
+      }
+      blockquote.input{
+        text-align: start;
+      }
+      blockquote.output{
+        text-align: end;
+      }
     </style>
   </head>
   <body>
@@ -43,7 +54,7 @@
       const setStatus = (str) => {document.getElementById("status").innerText = str;};
       const setStatusError = (err) => setStatus(err?.message ?? JSON.stringify(err));
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
-      const addOutput = (inStr, outStr) => {document.getElementById("output").innerText += `"${inStr}" -> "${outStr}\n"`;};
+      const addOutput = (inStr, outStr) => {document.getElementById("output").innerHtml += `<blockquote class="input">${inStr}</blockquote><br/><blockquote class="output">${outStr}</blockquote><br/>`;};
       let assistant = undefined;
         try{
           window.ai.assistant.create().then(model => {
