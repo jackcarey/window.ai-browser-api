@@ -39,7 +39,7 @@
     <script>
       const setStatus = (str) => {document.getElementById("status").innerText = str;};
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
-      const addOutput = (in, out) => {document.getElementById("status").innerText += `"${in}" -> "${out}\n"`;};
+      const addOutput = (inStr, outStr) => {document.getElementById("status").innerText += `"${inStr}" -> "${outStr}\n"`;};
       let assistant = undefined;
       (()=>{
         try{
