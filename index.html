@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>window.ai</title>
+    <style>
+      :root{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      main{
+        width: 100%;
+        height: 100%;
+        max-width: 1200px;
+      }
+      output{
+        font-family: sans-serif;
+        max-height: 80vh;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>window.ai local model stuff</h1>
+      <h2>Status:<span id="status">?</span></h2>
+    </header>
+    <main>
+      <output for="prompt"></output>
+      <input type="text" id="prompt"/>
+    </main>
+    <footer><a href="https://jackcarey.co.uk/">jackcarey.co.uk</a></footer>
+    <script>
+      const setStatus = (str) => {document.getElementById("status").innerText = str;};
+      setStatus(window.hasOwnProperty("ai") ? : "has window.ai" : "no window.ai");
+      const addOutput = (in, out) => {document.getElementById("status").innerText += `${in} -> ${out}\n`;};
+      let assistant = undefined;
+      (()=>{
+        try{
+          window.ai.assistant.create().then(model => {
+            assistant = model;
+            document.getElementById("prompt").addEventListener("change", (e) => {
+              await assistant.prompt(e.target.value).then(response => {
+                addOutput(e.target.value,response);
+              });
+            });
+            setStatus("ready - added event listener");
+        });
+        }catch(e){
+          setStatus(e?.message ?? JSON.stringify(e));
+      })();
+    </script>
+  </body>
+</html>
