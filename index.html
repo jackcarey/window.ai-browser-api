@@ -50,6 +50,7 @@
               if(val.length){
               assistant.prompt(val).then(response => {
                 addOutput(val,response);
+                e.target.value = "";
               });
               }
             });
