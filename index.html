@@ -41,7 +41,6 @@
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
       const addOutput = (inStr, outStr) => {document.getElementById("status").innerText += `"${inStr}" -> "${outStr}\n"`;};
       let assistant = undefined;
-      (()=>{
         try{
           window.ai.assistant.create().then(model => {
             assistant = model;
@@ -57,7 +56,7 @@
         });
         }catch(e){
           setStatus(e?.message ?? JSON.stringify(e));
-      })();
+      }
     </script>
   </body>
 </html>
