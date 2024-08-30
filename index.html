@@ -52,7 +52,10 @@
     <footer><a href="https://jackcarey.co.uk/">jackcarey.co.uk</a></footer>
     <script>
       const setStatus = (str) => {document.getElementById("status").innerText = str;};
-      const setStatusError = (err) => setStatus(err?.message ?? JSON.stringify(err));
+      const setStatusError = (err) => {
+        setStatus(err?.message ?? JSON.stringify(err));
+        console.error(e);
+      };
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
       const addOutput = (inStr, outStr) => {
         const inQuote = `<blockquote class="input">${inStr}</blockquote>`;
