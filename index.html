@@ -32,7 +32,7 @@
       <h2>Status:<span id="status">?</span></h2>
     </header>
     <main>
-      <output for="prompt"></output>
+      <output for="prompt" id="output"></output>
       <input type="text" id="prompt"/>
     </main>
     <footer><a href="https://jackcarey.co.uk/">jackcarey.co.uk</a></footer>
@@ -40,7 +40,7 @@
       const setStatus = (str) => {document.getElementById("status").innerText = str;};
       const setStatusError = (err) => setStatus(err?.message ?? JSON.stringify(err));
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
-      const addOutput = (inStr, outStr) => {document.getElementById("status").innerText += `"${inStr}" -> "${outStr}\n"`;};
+      const addOutput = (inStr, outStr) => {document.getElementById("output").innerText += `"${inStr}" -> "${outStr}\n"`;};
       let assistant = undefined;
         try{
           window.ai.assistant.create().then(model => {
