@@ -60,8 +60,8 @@
       };
       setStatus(window.hasOwnProperty("ai") ? "has window.ai" : "no window.ai");
       const addOutput = (inStr, outStr) => {
-        const inQuote = `<blockquote class="input">${inStr}</blockquote>`;
-        const outQuote = `<blockquote class="output">${outStr}</blockquote>`;
+        const inQuote = `<blockquote class="input">${inStr??"-"}</blockquote>`;
+        const outQuote = `<blockquote class="output">${outStr??"-"}</blockquote>`;
         document.getElementById("output").innerHTML += `${inQuote}<br>${outQuote}<br>`;
       };
       let assistant = undefined;
