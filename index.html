@@ -60,7 +60,7 @@
       const addOutput = (inStr, outStr) => {
         const inQuote = `<blockquote class="input">${inStr}</blockquote>`;
         const outQuote = `<blockquote class="output">${outStr}</blockquote>`;
-        document.getElementById("output").innerHtml += `${inQuote}<br>${outQuote}<br>`;
+        document.getElementById("output").innerHTML += `${inQuote}<br>${outQuote}<br>`;
       };
       let assistant = undefined;
         try{
